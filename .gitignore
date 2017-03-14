@@ -1,7 +1,6 @@
-out/
-.idea/
 out
-.idea
+.idea/workspace.xml
+.idea/task.xml
 
 # Windows image file caches
 Thumbs.db
