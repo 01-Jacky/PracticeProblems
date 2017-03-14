@@ -7,12 +7,18 @@ public class ArrayQuestions {
 
     public static void run_demo(){
 
-        ///////////////////// Testing maxProfit
-        int[] prices = new int[]{1,2};
-        System.out.println("Max profit: " + maxProfit(prices));
 
-        prices = new int[]{7, 6, 4, 3, 1};
-        System.out.println("Max profit: " + maxProfit(prices));
+        ///////////////////// Testing merge sorted array in place
+        // int[] nums1 = new int[]{0};
+        // int[] nums2 = new int[]{1};
+        // mergeSortedArrays_inplace(nums1,1,nums2,1);
+
+        ///////////////////// Testing maxProfit
+        // int[] prices = new int[]{1,2};
+        // System.out.println("Max profit: " + maxProfit(prices));
+        //
+        // prices = new int[]{7, 6, 4, 3, 1};
+        // System.out.println("Max profit: " + maxProfit(prices));
 
 
         ///////////////////// Testing twoSum
@@ -138,46 +144,57 @@ public class ArrayQuestions {
     }
 
 
-    public static int[] mergeSortedList(int[] nums1, int[] nums2) {
+    public static int[] mergeSortedArrays(int[] nums1, int m, int[] nums2,int n) {
         int[] arr = new int[nums1.length + nums2.length];
-        int j = 0;
-        int k = 0;
+        int c1 = 0;
+        int c2 = 0;
 
         for(int i = 0; i < arr.length; i++){
-            if(j > nums1.length-1) {
-                arr[i] = nums2[k];
-                k++;
-            } else if(k > nums2.length-1) {
-                arr[i] = nums1[j];
-                j++;
+            if(c1 > nums1.length-1) {    // If nums1 is at the end just fill with c2
+                arr[i] = nums2[c2];
+                c2++;
+            } else if(c2 > nums2.length-1) {    // If nums2 is at the end just fill with c1
+                arr[i] = nums1[c1];
+                c1++;
             } else {
-                arr[i] = (nums1[j] <= nums2[k]) ? nums1[j++] : nums2[k++];
+                if(nums1[c1] <= nums2[c2])
+                    arr[i] = nums1[c1++];
+                else
+                    arr[i] = nums2[c2++];
             }
         }
 
         return arr;
     }
 
-    public static void mergeSortedList_inplace(int[] nums1, int m, int[] nums2, int n) {
-        // int[] arr = new int[nums1.length + nums2.length];
-        // int j = 0;
-        // int k = 0;
-        //
-        // for(int i = 0; i < arr.length; i++){
-        //     if(j > nums1.length-1) {
-        //         arr[i] = nums2[k];
-        //         k++;
-        //     } else if(k > nums2.length-1) {
-        //         arr[i] = nums1[j];
-        //         j++;
-        //     } else {
-        //         arr[i] = (nums1[j] <= nums2[k]) ? nums1[j++] : nums2[k++];
-        //     }
-        // }
-        //
-        // for(int i = 0 ; i<arr.length; i++)
-        //     nums1[i] = arr[i];
-    }
+    static void mergeSortedArrays_inplace(int[] nums1, int m, int[] nums2, int n) {
+            // Use a new array and copy over the greater head value in each list
+            int[] arr = new int[nums1.length + nums2.length];
+            int c1 = 0;
+            int c2 = 0;
+
+            for(int i = 0; i < arr.length; i++){
+                if(c1 > nums1.length-1) {    // If nums1 is at the end just fill with c2
+                    arr[i] = nums2[c2];
+                    c2++;
+                } else if(c2 > nums2.length-1) {    // If nums2 is at the end just fill with c1
+                    arr[i] = nums1[c1];
+                    c1++;
+                } else {
+                    if(nums1[c1] <= nums2[c2])
+                        arr[i] = nums1[c1++];
+                    else
+                        arr[i] = nums2[c2++];
+                }
+            }
+
+            if(nums1.length < arr.length)
+                return;
+
+            for(int i = 0; i < arr.length; i++){
+                nums1[i] = arr[i];
+            }
+        }
 
 
     // Remove Duplicates from Sorted Array (in O(1) space);

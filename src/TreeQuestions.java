@@ -186,6 +186,39 @@ public class TreeQuestions {
         root.right = invertTree(temp);
         return root;
     }
+
+    static TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // Base case
+        if(root == null)
+            return null;
+
+        // If p and q are both smaller value than root, it must be in the left subtree. Same logic applies for right subtree.
+        // If root is inbetween p and q in terms of value, it must be the lowest ancestor.
+        if(p.val < root.val && q.val > root.val)
+            return root;
+        else if(p.val < root.val && q.val < root.val)
+            return lowestCommonAncestor(root.left,p,q);
+        else if(p.val > root.val && q.val > root.val)
+            return lowestCommonAncestor(root.right,p,q);
+        else
+            return root;    // captures the event that p or q is = to root
+    }
+
+    // https://leetcode.com/problems/symmetric-tree/
+    static boolean isSymmetric(TreeNode root) {
+        if(root==null) return true;
+        return isSymmetricHelper(root.left, root.right);
+    }
+
+    static boolean isSymmetricHelper(TreeNode left, TreeNode right){
+        //Base cases
+        if(left == null && right == null)
+            return true;
+        if(left == null || right == null)   // Not mirror if only one side exist
+            return false;
+
+        return left.val == right.val && isSymmetricHelper(left.left,right.right) && isSymmetricHelper(left.right,right.left);
+    }
 }
 
 

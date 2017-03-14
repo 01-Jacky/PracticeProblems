@@ -7,7 +7,8 @@ public class MapPractice {
 
         TreeMap<String, Integer> tree_map_natural_order = new TreeMap<>();      // O(logn) instead of O(1) but retains order
 
-        Map<String, Integer> tree_map_lambda = new TreeMap<>( (String o1, String o2) -> o2.compareTo(o1) );
+        TreeMap<String, Integer> tree_map_lambda = new TreeMap<>( (String o1, String o2) -> o2.compareTo(o1) );
+
         TreeMap<String, Integer> tree_map_comparator = new TreeMap<>(
                 new Comparator<String>() {
                     @Override
