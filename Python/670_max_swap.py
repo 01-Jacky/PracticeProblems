@@ -1,23 +1,28 @@
 """
-https://leetcode.com/problems/add-digits/description/
+https://leetcode.com/problems/maximum-swap/description/
 """
 
 
 class Solution(object):
-    def addDigits(self, num):
-        """R
+    def swap(self, x, y):
+        pass
+
+    def find_highest_indexes(self, num):
+        max = 0
+        for digit_str in str(num):
+            if int(digit_str) > max:
+                max = int(digit_str)
+
+
+
+    def maximumSwap(self, num):
+        """
         :type num: int
         :rtype: int
         """
-        while num >= 10:
-            temp_sum = 0
-            for digit_str in str(num):
-                temp_sum += int(digit_str)
-            num = temp_sum
-
-        return num
-
 
 if __name__ == "__main__":
     s = Solution()
-    print s.addDigits(38)
+    print Solution().editDistance("xxxxx", "AxxAx")
+
+
