@@ -49,4 +49,4 @@ class Solution(object):
 
 if __name__ == "__main__":
     s = Solution()
-    print s.hammingDistance(4, 10)
+    print(s.hammingDistance(4, 10))

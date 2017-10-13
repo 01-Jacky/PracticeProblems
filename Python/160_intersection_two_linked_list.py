@@ -57,6 +57,6 @@ if __name__ == "__main__":
     a2.next = a3
     b1.next = a2
 
-    print Solution().getIntersectionNode(a1, b1)
+    print(Solution().getIntersectionNode(a1, b1))
 
 
