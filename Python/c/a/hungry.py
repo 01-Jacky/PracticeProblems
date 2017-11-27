@@ -28,53 +28,53 @@ def _get_start_position(m):
     cols = len(m[0])
 
     if rows % 2 == 1:
-        row_possible = [(rows // 2)]                       # 5//2 = 2 which is already the right index, no need for -1
+        x_possible = [(rows // 2)]                       # 5//2 = 2 which is already the right index, no need for -1
     else:
-        row_possible = [(rows // 2) - 1, (rows // 2)]      # 4//2 = 2, so the index we want are 1,2
+        x_possible = [(rows // 2) - 1, (rows // 2)]      # 4//2 = 2, so the index we want are 1,2
 
     if cols % 2 == 1:
-        col_possible = [(cols // 2)]
+        y_possible = [(cols // 2)]
     else:
-        col_possible = [(cols // 2) - 1, (cols // 2)]
+        y_possible = [(cols // 2) - 1, (cols // 2)]
 
     most_carrot = 0
-    for r in row_possible:
-        for c in col_possible:
-            if m[r][c] > most_carrot:
-                most_carrot = m[r][c]
-                r_start = r
-                c_start = c
+    for i in x_possible:
+        for j in y_possible:
+            if m[i][j] > most_carrot:
+                most_carrot = m[i][j]
+                x_start = i
+                y_start = j
 
-    return r_start, c_start
+    return x_start, y_start
 
 
-def _get_next_position(m, row, col):
+def _get_next_position(m, x, y):
     """ Returns a tuple of (x,y) of adjacent square (up, down, left, right) with most carrots. Or None if n """
     # See which x,y are inbound
-    valid_row_col = []                   # Tuples of (x,y) coordinates
-    if row-1 >= 0:                    # Left
-        valid_row_col.append((row - 1, col))
-    if row+1 < len(m):                # Right
-        valid_row_col.append((row + 1, col))
-    if col-1 >= 0:                    # Up
-        valid_row_col.append((row, col - 1))
-    if col+1 < len(m[0]):             # Down
-        valid_row_col.append((row, col + 1))
+    valid_xy = []                   # Tuples of (x,y) coordinates
+    if x-1 >= 0:                    # Left
+        valid_xy.append((x-1, y))
+    if x+1 < len(m):                # Right
+        valid_xy.append((x+1, y))
+    if y-1 >= 0:                    # Up
+        valid_xy.append((x, y-1))
+    if y+1 < len(m[0]):             # Down
+        valid_xy.append((x, y+1))
 
     # Go through each valid x,y and return the x,y of the one with the most carrot
     most_carrot = 0
-    r_next = c_next = None
-    for xy in valid_row_col:
+    x_next = y_next = None
+    for xy in valid_xy:
         i, j = xy                   # unpack the tuple (x,y)
         if m[i][j] > most_carrot:
             most_carrot = m[i][j]
-            r_next = i
-            c_next = j
+            x_next = i
+            y_next = j
 
     if most_carrot == 0:            # We ran out of carrots to eat
         return None, None
     else:
-        return r_next, c_next
+        return x_next, y_next
 
 
 def get_carrots_eaten(m):
@@ -83,16 +83,16 @@ def get_carrots_eaten(m):
         return 0
 
     sum_eaten = 0
-    r, c = _get_start_position(m)       # Could also use a dictionary or wrapper class instead of tuple
+    x, y = _get_start_position(m)       # Could also use a dictionary or wrapper class instead of tuple
 
     while True:                         # Stop when _get_next_position can't find more carrots to eat
-        if r is None:
+        if x is None:
             break
-        print('[{}][{}] = {}'.format(r,c,m[r][c]))
-        sum_eaten += m[r][c]
-        m[r][c] = 0                     # Remove the eaten carrot to get the next position correctly
+        print('[{}][{}] = {}'.format(x,y,m[x][y]))
+        sum_eaten += m[x][y]
+        m[x][y] = 0                     # Remove the eaten carrot to get the next position correctly
 
-        r, c = _get_next_position(m, r, c)
+        x, y = _get_next_position(m, x, y)
 
     return sum_eaten
 
@@ -104,12 +104,12 @@ def get_carrots_eaten(m):
 # print('eaten = {}'.format(get_carrots_eaten(m)))
 # print()
 #
-m = [[5, 7, 8, 6, 3],
-     [0, 0, 7, 0, 4],
-     [4, 6, 3, 4, 9],
-     [3, 1, 0, 5, 8],]
-x_start, y_start = _get_start_position(m)
-print('eaten = {}'.format(get_carrots_eaten(m)))
+# m = [[5, 7, 8, 1, 6, 3],
+#      [0, 0, 7, 2, 0, 4],
+#      [4, 6, 3, 3, 4, 9],
+#      [3, 1, 0, 4, 5, 8],]
+# x_start, y_start = _get_start_position(m)
+# print('eaten = {}'.format(get_carrots_eaten(m)))
 
 # m = [[5, 7, 8, 6, 3],
 #      [0, 0, 7, 0, 4],
@@ -120,8 +120,8 @@ print('eaten = {}'.format(get_carrots_eaten(m)))
 # x_start, y_start = _get_start_position(m)
 # print('eaten = {}'.format(get_carrots_eaten(m)))
 
-# m = [[5, 7, 8, 11, 16, 3],
-#      [0, 0, 9, 12, 0, 4],
-#      [4, 6, 14, 13, 4, 9],
-#      [3, 1, 0, 4, 5, 8],]
-# print('eaten = {}'.format(get_carrots_eaten(m)))
+m = [[5, 7, 8, 11, 16, 3],
+     [0, 0, 9, 12, 0, 4],
+     [4, 6, 14, 13, 4, 9],
+     [3, 1, 0, 4, 5, 8],]
+print('eaten = {}'.format(get_carrots_eaten(m)))
