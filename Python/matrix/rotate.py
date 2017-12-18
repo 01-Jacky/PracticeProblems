@@ -1,6 +1,32 @@
 import matrix_helper
 
 
+def _flipped(m):
+    for i in range(len(m) // 2):
+        # swap
+        print(i)
+        tmp = m[i]
+        m[i] = m[len(m) - i - 1]
+        m[len(m) - i - 1] = tmp
+    return m
+
+
+def _transpose(m):
+    ans = []
+    for col in range(len(m[0])):
+        tmp = []
+        for row in range(len(m)):
+            tmp.append(m[row][col])
+        ans.append(tmp)
+    return ans
+
+# def rotate(m):
+#     # flip + transpose = clockwise rotation
+#     # flipped = _flipped(m)
+#     flipped = m[::-1]
+#     return list(zip(*flipped))
+
+
 def rotate(A):
     """
     Reverse and transpose (counter clockwise)

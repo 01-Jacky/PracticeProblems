@@ -35,7 +35,7 @@ class Solution(object):
     def jump(self, nums):
         """ Returns a string representing a solution for min hops out of the array """
         if len(nums) == 0:
-            return 'failure'
+            return ['failure']
 
         i = 0
         max_reach = nums[i]
@@ -43,7 +43,7 @@ class Solution(object):
 
         while i < len(nums)-1:
             if max_reach <= i:
-                return 'failure'
+                return ['failure']
             if max_reach >= len(nums):
                 break
 
@@ -58,12 +58,12 @@ class Solution(object):
             # print(' --- ')
 
         if max_reach > len(nums)-1:                 # Finished iterating through array
-            return ', '.join(solution + ['out'])
+            return solution + ['out']
         else:
-            return 'failure'
+            return ['failure']
 
 
-# print(Solution().jump([]))
+print(Solution().jump([1,1,2,0,0]))
 # print(Solution().jump([0]))
 # print(Solution().jump([1]))
 # print(Solution().jump([1,1]))
@@ -74,8 +74,8 @@ class Solution(object):
 # print(Solution().jump([1,1,1,1]))
 # print(Solution().jump([2,0,33,2]))
 
-print(Solution().jump([5,6,0,4,2,4,1,0,0,4]))
-print(Solution().jump([5,6,0,4,2,4,1,0,0,4,1,1,10,2,1]))
+# print(', '.join(Solution().jump([5,6,0,4,2,4,1,0,0,4])))
+# print(Solution().jump([5,6,0,4,2,4,1,0,0,4,1,1,10,2,1]))
 # print(Solution().jump([2,0,0,0,4]))
 # print(Solution().jump([2,3,1,1,2,4,2,0,1,1]))
 # Solution().jump([1,3,1,1,4])
