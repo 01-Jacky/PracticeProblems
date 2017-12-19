@@ -7,37 +7,37 @@
 class Solution(object):
     # Solution 1) recursion
     # Time: O(n) Space: O(1)
-    def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        return self._reverse(head, None)
-
-    def _reverse(self, cur, prev):
-        if cur is None:
-            return prev
-        next_node = cur.next
-        cur.next = prev
-        return self._reverse(next_node, cur)
-
-
-    # Solution 2) use 3 pointers and iterate through the list
-    # Time: O(n) Space: O(1)
     # def reverseList(self, head):
     #     """
     #     :type head: ListNode
     #     :rtype: ListNode
     #     """
-    #     if head is None:
-    #         return None
+    #     return self._reverse(head, None)
     #
-    #     prev = None
-    #     cur = head
-    #
-    #     while head is not None:
-    #         next = cur.next
-    #         cur.next = prev
-    #         cur = next
-    #     return prev
+    # def _reverse(self, cur, prev):
+    #     if cur is None:
+    #         return prev
+    #     next_node = cur.next
+    #     cur.next = prev
+    #     return self._reverse(next_node, cur)
+
+
+    # Solution 2) use 3 pointers and iterate through the list
+    # Time: O(n) Space: O(1)
+    def reverseList(self, head):
+        """
+        :type head: ListNode
+        :rtype: ListNode
+        """
+        if head is None:
+            return None
+
+        prev = None
+        cur = head
+
+        while head is not None:
+            next = cur.next
+            cur.next = prev
+            cur = next
+        return prev
 

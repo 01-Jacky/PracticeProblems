@@ -1,12 +1,13 @@
 import matrix_helper
 
 class Solution(object):
+    # Print to layer and rotate. Repeat\
+
     def spiralOrder(self, matrix):
         """
         :type matrix: List[List[int]]
         :rtype: List[int]
         """
-
         res = []
         # matrix[:] = zip(*matrix[::-1])
         while matrix:
