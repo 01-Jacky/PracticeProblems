@@ -28,13 +28,14 @@ class Solution(object):
         """
         ans = []
         while n:
-            n = n-1
+            n = n-1                         # -1 because using # of offset from A. A=0 offset from A,, B=2 offset From A...
+            n = n // 26                     # Try to move a digit via base 26
             remain = n % 26
-            ans.append(chr(ord('A')+remain))    # convert remainder to char. Add -1 because 1=A 2=B... so offset by -1
-            n = n // 26
+            ascii_code = ord('A')+remain
+            ans.append(chr(ascii_code))     # convert remainder to char.
         return ''.join(ans[::-1])
 
 
 
 # assert Solution().convertToTitle(28) == 'AB'
-print(Solution().convertToTitle(700))
+print(Solution().convertToTitle(1000))
