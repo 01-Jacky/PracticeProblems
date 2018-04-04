@@ -6,6 +6,9 @@ Given:  [1,2,3,4,5]
 Return: 60
 
 Solution:
+0) Sort and find max 3 versus min 2 * max 
+Time O(nlgn) Space O(n)
+
 1) Analyze by cases:
 If all pos num
     3 biggest num
@@ -46,7 +49,10 @@ def maximumProduct(nums):
             min1, min2 = num, min1
         elif num < min2:
             min2 = num
-    return max(max1 * max2 * max3, min1 * min2 * max1)
+
+        product_3_max = max1 * max2 * max3
+        product_2_neg_1_max = min1 * min2 * max1
+    return max(product_3_max, product_2_neg_1_max)
 
 
 def highest_product_of_3_v2(list_of_ints):

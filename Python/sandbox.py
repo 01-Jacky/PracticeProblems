@@ -1,10 +1,4 @@
-def foo(num):
-    if num <= 0:
-        return False
-    for x in [5,3,2]:
-        while num % x == 0:
-            num = num / x
-    return num == 1
+line1 = input()
+a,b,c = line1.split(" ")
 
-
-print(foo(8))
+print('{} {} {}'.format(a,b,c))

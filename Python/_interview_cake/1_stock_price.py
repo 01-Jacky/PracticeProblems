@@ -29,6 +29,7 @@ def get_max_profit(prices):
     max_profit = prices[1] - prices[0]
 
     for i in range(1, len(prices)):
+        # Either sell it today or take your previous best
         max_profit = max(max_profit, prices[i] - min_price)
         min_price = min(min_price, prices[i])
 

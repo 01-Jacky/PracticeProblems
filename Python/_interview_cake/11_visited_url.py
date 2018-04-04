@@ -6,8 +6,27 @@ class Trie:
             self.insert(url)
 
     def insert(self, url):
-        lsat_ch = None
+        cursor = self.trie
         for ch in url:
-            if self.trie[ch] is None:
-                self.trie[ch] = {}
-            last_ch
+            if ch not in cursor:
+                cursor[ch] = {}
+            cursor = cursor[ch]
+
+        if 'end' not in cursor:
+            cursor['end'] = {}
+
+    def exist(self, url):
+        cursor = self.trie
+        for ch in url:
+            if ch not in cursor:
+                cursor[ch] = {}
+            cursor = cursor[ch]
+
+        if 'end' in cursor:
+            return True
+        else:
+            return False
+
+trie = Trie(['www.google.com','www.google.net','www.gmail.com'])
+
+print(trie.exist('www.gmailz.com'))

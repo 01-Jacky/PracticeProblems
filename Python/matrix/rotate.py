@@ -35,9 +35,30 @@ def rotate(A):
     A[:] = A[::-1]
     A[:] = zip(*A)
 
+
+
+def rotate_inplace(matrix):
+    """
+    Reverse and transpose (counter clockwise)
+    Time: O(mn) Space: O(mn)
+    """
+    n = len(matrix)
+
+    for layer in range(n//2):
+        first = layer
+        last = n - 1 - layer
+
+        for i in range(first, last):
+            offset = i - first
+            topleft = matrix[first][i]
+
+            matrix[first][i]            = matrix[last-offset][first]    # tl = bl
+            matrix[last-offset][first]  = matrix[last][last-offset]     # bl = br
+            matrix[last][last-offset]   = matrix[i][last]               # br = tr
+            matrix[i][last]             = topleft                       # tr = tl
+
+
 matrix = [[1,2,3],[4,5,6],[7,8,9]]
-rotate(matrix)
+rotate_inplace(matrix)
 matrix_helper.print_matrix(matrix)
-print()
-rotate(matrix)
-matrix_helper.print_matrix(matrix)
+

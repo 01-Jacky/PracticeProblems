@@ -2,12 +2,13 @@ class Solution:
     """
     nums = [0, 1, 0, 3, 12], after calling your function, nums should be [1, 3, 12, 0, 0].
 
-    sort... nlgn
+    1) sorting
     0 0 1 3 12
     move zeros
     1 3 12 0 0
     space n time nlogn :/
 
+    2) use extra space and only copy over non zero
     0, 1, 0, 3, 12
     init new array full of 0
     0 0 0 0 0
@@ -15,20 +16,7 @@ class Solution:
     1 3 12 0 0
     time O(n) space O(n))
 
-    move nums to the left using 2 pointers
-    prev = 0
-    0 1 0 3 12
-    1 1 0 3 12
-    prev = 1
-    1 3 0 3 12
-    prev = 2
-    1 3 12 3 12
-    prev = 3
-    Done with 1st loop. Now start from 3 and wipe it with 0s
-    prev was index 3, so from 3 and on make everything 0
-    1 3 12 0 0
-    Time O(n) Space O(1)
-
+    3) find the first zero to swap with
     a=0
     i=1
     0, 1, 0, 3, 12
@@ -43,6 +31,22 @@ class Solution:
     swap
     1 3 12 0 0
     Time O(n) Space O(1)
+
+    4)move nums to the left using 2 pointers
+    prev = 0
+    0 1 0 3 12
+    1 1 0 3 12      copied 1 into index 0
+    prev = 1
+    1 3 0 3 12      copied 3 into index 1
+    prev = 2
+    1 3 12 3 12     copied 12 into index 2
+    prev = 3
+
+    Done with 1st loop. Now start after where prev index left off and wipe it with 0s
+    prev was index 3, so from 3 and on make everything 0
+    1 3 12 0 0
+    Time O(n) Space O(1)
+
     """
     def moveZeroes(self, nums):
         """

@@ -25,19 +25,15 @@ class Solution(object):
     # Solution 2) use 3 pointers and iterate through the list
     # Time: O(n) Space: O(1)
     def reverseList(self, head):
-        """
-        :type head: ListNode
-        :rtype: ListNode
-        """
-        if head is None:
-            return None
-
         prev = None
         cur = head
 
-        while head is not None:
-            next = cur.next
+        while cur is not None:
+            scout = cur.next
             cur.next = prev
-            cur = next
-        return prev
+            prev = cur
+            cur = scout
+
+        return prevn
+
 

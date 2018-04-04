@@ -25,20 +25,25 @@ def get_permutations(s):
     return permutations
 
 
-# def permute(nums):
-#     res = []
-#     dfs(nums, [], res)
-#     return res
-#
-# def dfs(nums, path, res):
-#     if not nums:
-#         res.append(path)
-#         # return # backtracking
-#     for i in range(len(nums)):
-#         dfs(nums[:i] + nums[i + 1:], path + [nums[i]], res)
-#     return res
+def permute(s):
+    # base case
+    if len(s) == 1:
+        return set([s])
+
+    # call recursion to get permutations using all but last char
+    permutations_except_1st = permute(s[1:])
+
+    # for each returned permutation, insert the left out character into each place
+    permutations = set()
+    for permutation in permutations_except_1st:
+        for i in range(len(permutation)+1):
+            result = permutation[:i] + s[0] + permutation[i:]
+            permutations.add(result)
+
+    return permutations
 
 
-print(get_permutations('abc'))
+# print(get_permutations('abc'))
+print(permute('abc'))
 
 # print(permute('cats'))
