@@ -1,4 +1,4 @@
-line1 = input()
-a,b,c = line1.split(" ")
+def foo():
+    return 1,2
 
-print('{} {} {}'.format(a,b,c))
+print(foo())
